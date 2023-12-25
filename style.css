@@ -88,6 +88,7 @@
     height: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
+    border-radius: 10px;
   }
   
   /* messages */
@@ -151,28 +152,23 @@
   .input-group {
     width: 100%;
   }
-
-  .input-group input {
-    height: 100%;
-  }
   
   .params-icons {
     background-color: #00000020;
+    width: 3em;
     border: 0;
-    height: 2.29em;
-    width: 2em;
-    padding: 3px;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10;
     fill: rgb(171, 171, 171);
     border-radius: 10px;
     &:hover {
       fill: rgb(133, 133, 133);
+      transition: 0.2s ease-in-out;
     }
     &:active {
       background-color: #00000036;
+      padding-bottom: 7px;
     }
   }
 

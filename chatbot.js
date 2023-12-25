@@ -64,19 +64,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-function adjustRows(textarea) {
-    textarea.style.height = "45px";
-    textarea.style.height = (25 + textarea.scrollHeight) + "px"
-}
-
-
 function parse_response_metadata(metadata, message_number) {
     [metada_json, other_text] = metadata.split("\n")
 
     if (metada_json == "{}"){
         return other_text
     }
-
     
     let lastbotsources = document.getElementById("botsources" + message_number);
     
@@ -98,11 +91,22 @@ function parse_response_metadata(metadata, message_number) {
     return other_text
 }
 
+function getCheckedCheckboxNames(parentDivId) {
+    var checkedBoxes = document.querySelectorAll('#' + parentDivId + ' input[type="checkbox"]:checked');
+    var names = [];
+    
+    checkedBoxes.forEach(function(checkbox) {
+        names.push(checkbox.name);
+    });
+
+    return names;
+}
 
 function ask_gouvx(question, message_number) {
     const postData = new URLSearchParams({
-        q: question,
-        h: JSON.stringify(chat_history)
+        question: question,
+        history: JSON.stringify(chat_history),
+        sources: getCheckedCheckboxNames("sources")
     });
 
     const loader = document.querySelector('.loading')
